@@ -36,6 +36,7 @@
 @media (prefers-color-scheme:dark){:root{--bg:#1d1510;--paper:#2a1e16;--ink:#f3e8d6;--muted:#bfae98;--line:#4a3626}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+#download{scroll-margin-top:16px}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Georgia,"Times New Roman",serif}
 a{color:var(--leaf)}
 .wrap{max-width:1000px;margin:0 auto;padding:0 16px}
@@ -85,7 +86,7 @@ html[lang=ru] [data-l=ru],html[lang=en] [data-l=en]{display:revert}
 </nav>
 
 <header class="hero">
-  <img src="icon.png" alt="Иконка Читальни: книжный шкаф с цветком / Chitalnya icon: bookcase with a flower">
+  <img src="icon.png" width="140" height="140" alt="Иконка Читальни: книжный шкаф с цветком / Chitalnya icon: bookcase with a flower">
   <h1><span data-l="ru">Читальня</span><span data-l="en">Chitalnya</span></h1>
   <p data-l="ru">Уютная читалка школьных учебников в PDF для Android-планшета. Ваши папки остаются папками, закладки получают подписи, экран не гаснет.</p>
   <p data-l="en">A cosy reader for school textbooks in PDF on Android tablets. Your folders stay folders, bookmarks get labels, the screen stays on.</p>
@@ -120,10 +121,10 @@ html[lang=ru] [data-l=ru],html[lang=en] [data-l=en]{display:revert}
 <section>
   <h2><span data-l="ru">Как это выглядит</span><span data-l="en">Screenshots</span></h2>
   <div class="shots">
-    <figure><img src="shots/library-home.jpg" alt="Главный экран Читальни / Chitalnya home screen" loading="lazy"><figcaption><span data-l="ru">Главный экран: папки-шкафчики</span><span data-l="en">Home: catalogue-drawer folders</span></figcaption></figure>
-    <figure><img src="shots/library-books.jpg" alt="Обложки учебников / Textbook covers" loading="lazy"><figcaption><span data-l="ru">Обложки учебников, тема «Библиотека»</span><span data-l="en">Textbook covers, “Library” theme</span></figcaption></figure>
-    <figure><img src="shots/scifi-books.jpg" alt="Тема «Фантастика» / Sci-fi theme" loading="lazy"><figcaption><span data-l="ru">Тема «Фантастика»: галактики и HUD-карточки</span><span data-l="en">“Sci-fi” theme: galaxies and HUD cards</span></figcaption></figure>
-    <figure><img src="shots/scifi-reader.jpg" alt="Чтение с лентой превью / Reading with thumbnail strip" loading="lazy"><figcaption><span data-l="ru">Чтение: лента превью, закладки, переход по странице</span><span data-l="en">Reading: thumbnail strip, bookmarks, page jump</span></figcaption></figure>
+    <figure><img src="shots/library-home.jpg" alt="Главный экран Читальни / Chitalnya home screen" width="1280" height="800" loading="lazy"><figcaption><span data-l="ru">Главный экран: папки-шкафчики</span><span data-l="en">Home: catalogue-drawer folders</span></figcaption></figure>
+    <figure><img src="shots/library-books.jpg" alt="Обложки учебников / Textbook covers" width="1280" height="800" loading="lazy"><figcaption><span data-l="ru">Обложки учебников, тема «Библиотека»</span><span data-l="en">Textbook covers, “Library” theme</span></figcaption></figure>
+    <figure><img src="shots/scifi-books.jpg" alt="Тема «Фантастика» / Sci-fi theme" width="1280" height="800" loading="lazy"><figcaption><span data-l="ru">Тема «Фантастика»: галактики и HUD-карточки</span><span data-l="en">“Sci-fi” theme: galaxies and HUD cards</span></figcaption></figure>
+    <figure><img src="shots/scifi-reader.jpg" alt="Чтение с лентой превью / Reading with thumbnail strip" width="1280" height="800" loading="lazy"><figcaption><span data-l="ru">Чтение: лента превью, закладки, переход по странице</span><span data-l="en">Reading: thumbnail strip, bookmarks, page jump</span></figcaption></figure>
   </div>
 </section>
 
@@ -144,7 +145,7 @@ html[lang=ru] [data-l=ru],html[lang=en] [data-l=en]{display:revert}
 
 <section id="install">
   <h2><span data-l="ru">Скачать и установить</span><span data-l="en">Download and install</span></h2>
-  <p class="cap" style="margin:0 0 16px"><a class="btn" href="https://github.com/Aleksandr-Kai/chitalnya/releases/latest/download/Chitalnya.apk"><span data-l="ru">Скачать Читальню (APK, 9 МБ)</span><span data-l="en">Download Chitalnya (APK, 9 MB)</span></a></p>
+  <p class="cap" id="download" style="margin:0 0 16px"><a class="btn" href="https://github.com/Aleksandr-Kai/chitalnya/releases/latest/download/Chitalnya.apk"><span data-l="ru">Скачать Читальню (APK, 9 МБ)</span><span data-l="en">Download Chitalnya (APK, 9 MB)</span></a></p>
   <p class="cap"><span data-l="ru">Читальни нет в Google Play, поэтому она ставится из файла. Это безопасно и занимает минуту.</span><span data-l="en">Chitalnya is not on Google Play, so it installs from a file. It is safe and takes a minute.</span></p>
   <p class="cap" id="verline" hidden><b><span data-l="ru">Актуальная версия: </span><span data-l="en">Latest version: </span><span id="ver"></span></b></p>
   <ol class="steps">
@@ -207,6 +208,16 @@ html[lang=ru] [data-l=ru],html[lang=en] [data-l=en]{display:revert}
       document.getElementById('ver').textContent=v;
       document.getElementById('verline').hidden=false;
     }).catch(function(){});
+})();
+
+// Jumping to the download section: images above change the page height while loading, so land on the button once everything is in place.
+(function(){
+  var h=location.hash;
+  if(h!=='#install'&&h!=='#download')return;
+  function go(){var el=document.getElementById('download');if(el){var b=document.documentElement.style.scrollBehavior;document.documentElement.style.scrollBehavior='auto';el.scrollIntoView();document.documentElement.style.scrollBehavior=b;}}
+  go();
+  window.addEventListener('load',go);
+  setTimeout(go,600);
 })();
 </script>
 </body>
