@@ -6,6 +6,8 @@ import android.net.Uri
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.lerp
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -25,6 +27,16 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     fun chooseTheme(value: AppTheme) {
         theme = value
         prefs.edit().putString(KEY_THEME, value.name).apply()
+    }
+
+    var lang by mutableStateOf(
+        prefs.getString(KEY_LANG, null)?.let { runCatching { AppLang.valueOf(it) }.getOrNull() } ?: AppLang.SYSTEM,
+    )
+        private set
+
+    fun chooseLang(value: AppLang) {
+        lang = value
+        prefs.edit().putString(KEY_LANG, value.name).apply()
     }
 
     var immersive by mutableStateOf(prefs.getBoolean(KEY_IMMERSIVE, true))
@@ -77,6 +89,25 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         }.sortedWith(compareBy({ it.book.name }, { it.page }))
     }
 
+    var dimWhite by mutableStateOf(prefs.getBoolean(KEY_DIM, false))
+        private set
+    var dimLevel by mutableStateOf(prefs.getFloat(KEY_DIM_LEVEL, 0.5f))
+        private set
+
+    fun chooseDimWhite(value: Boolean) {
+        dimWhite = value
+        prefs.edit().putBoolean(KEY_DIM, value).apply()
+    }
+
+    fun chooseDimLevel(value: Float) {
+        dimLevel = value.coerceIn(0f, 1f)
+        prefs.edit().putFloat(KEY_DIM_LEVEL, dimLevel).apply()
+    }
+
+    /** Multiplied over page bitmaps so paper white turns warm and softer; null when the filter is off. */
+    val pageTint: Color?
+        get() = if (dimWhite) lerp(Color.White, Color(0xFFD8C9A4), dimLevel) else null
+
     var thumbStrip by mutableStateOf(prefs.getBoolean(KEY_THUMBS, true))
         private set
 
@@ -89,7 +120,8 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         private set
     var scanning by mutableStateOf(false)
         private set
-    var error by mutableStateOf<String?>(null)
+    /** String resource id of the message to show, if any. */
+    var error by mutableStateOf<Int?>(null)
         private set
     var current by mutableStateOf<Book?>(null)
         private set
@@ -133,12 +165,12 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
                 withContext(Dispatchers.IO) { Library.scan(getApplication(), root) }
             }.onSuccess { lib ->
                 library = lib
-                if (lib.bookCount == 0) error = "В выбранной папке нет PDF-файлов"
+                if (lib.bookCount == 0) error = R.string.err_empty
                 restoreBook?.let { saved -> current = find(lib, saved) }
                 restoreBook = null
             }.onFailure {
                 library = null
-                error = "Не удалось прочитать папку. Выберите её заново."
+                error = R.string.err_read
             }
             scanning = false
         }
@@ -172,11 +204,19 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     private companion object {
         const val KEY_ROOT = "root"
         const val KEY_THEME = "theme"
+        const val KEY_LANG = "lang"
         const val KEY_THUMBS = "thumb_strip"
+        const val KEY_DIM = "dim_white"
+        const val KEY_DIM_LEVEL = "dim_level"
         const val KEY_BOOKMARKS = "bookmarks"
         const val KEY_IMMERSIVE = "immersive"
         const val KEY_LAST_BOOK = "last_book"
         const val PAGE_PREFIX = "page:"
         const val ZOOM_PREFIX = "zoom:"
     }
+}
+
+/** Interface language; [tag] null follows the system language. */
+enum class AppLang(val tag: String?, @androidx.annotation.StringRes val label: Int) {
+    SYSTEM(null, R.string.lang_system), RU("ru", R.string.lang_ru), EN("en", R.string.lang_en),
 }

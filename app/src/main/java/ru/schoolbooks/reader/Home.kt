@@ -1,5 +1,6 @@
 package ru.schoolbooks.reader
 
+import androidx.compose.ui.res.stringResource
 import android.graphics.Bitmap
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -56,7 +57,7 @@ fun Home(model: AppViewModel, library: Folder) {
             Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 4.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            TextButton(onClick = { model.goHome(0) }) { Text("Все учебники", fontSize = 18.sp) }
+            TextButton(onClick = { model.goHome(0) }) { Text(stringResource(R.string.all_books), fontSize = 18.sp) }
             model.homePath.forEachIndexed { i, name ->
                 Text("›", fontSize = 18.sp)
                 TextButton(onClick = { model.goHome(i + 1) }) { Text(name, fontSize = 18.sp) }
@@ -92,7 +93,7 @@ private fun FolderTile(folder: Folder, onClick: () -> Unit) {
                 contentAlignment = Alignment.Center,
             ) { Text("📁", fontSize = 64.sp) }
         }
-        Caption(folder.name, "${folder.bookCount} учебн.", center = true)
+        Caption(folder.name, LocalContext.current.resources.getQuantityString(R.plurals.books, folder.bookCount, folder.bookCount), center = true)
     }
 }
 
@@ -162,7 +163,7 @@ private fun BookTile(book: Book, savedPage: Int, onClick: () -> Unit) {
                 Text("📄", fontSize = 48.sp)
             }
         }
-        Caption(book.name, if (sciFi) (if (savedPage > 0) "стр. ${savedPage + 1}" else "новая") else null)
+        Caption(book.name, if (sciFi) (if (savedPage > 0) stringResource(R.string.page_short, savedPage + 1) else stringResource(R.string.new_book)) else null)
     }
     }
 }

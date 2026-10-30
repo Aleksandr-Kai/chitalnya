@@ -13,7 +13,7 @@ import kotlinx.coroutines.sync.withLock
 /** Thin wrapper over PdfRenderer, which only allows one open page at a time. */
 class PdfDoc(context: Context, uri: Uri) : AutoCloseable {
     private val descriptor: ParcelFileDescriptor =
-        context.contentResolver.openFileDescriptor(uri, "r") ?: error("Не удалось открыть файл")
+        context.contentResolver.openFileDescriptor(uri, "r") ?: error("Cannot open file")
     private val renderer = PdfRenderer(descriptor)
     private val lock = Mutex()
     private val cache = object : LruCache<Pair<Int, Int>, Bitmap>(

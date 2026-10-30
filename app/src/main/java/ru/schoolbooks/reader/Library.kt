@@ -22,6 +22,15 @@ object Library {
     fun displayName(treeUri: Uri): String =
         displayName(DocumentsContract.getTreeDocumentId(treeUri))
 
+    /** Human-readable location of a picked tree, e.g. "Internal storage/Documents/Books". */
+    fun displayPath(treeUri: Uri, internalStorage: String): String {
+        val id = DocumentsContract.getTreeDocumentId(treeUri)
+        val volume = id.substringBefore(':')
+        val path = id.substringAfter(':', "").trim('/')
+        val root = if (volume == "primary") internalStorage else volume
+        return if (path.isEmpty()) root else "$root/$path"
+    }
+
     private fun displayName(documentId: String): String =
         documentId.substringAfterLast(':').ifEmpty { "primary" }.substringAfterLast('/')
             .ifEmpty { documentId }

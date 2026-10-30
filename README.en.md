@@ -33,6 +33,10 @@
 - 💾 **Memory**: a book opens where you stopped; zoom is remembered per book and separately for portrait and landscape.
 - 🔍 **Zoom**: pinch or buttons; portrait defaults to fit-to-width.
 - 🎞 **Thumbnail strip**: shown beside the page when there is spare room, current page framed, tap to switch (can be turned off).
+- 🌐 **Two languages**: Russian and English, switchable in settings.
+- 🌗 **Dim white**: an optional filter with adjustable strength, so pages are easier on the eyes.
+- ↔ **Fit width**: a button that restores the default zoom when it has been changed.
+- 🗂 **Pull-out thumbnails**: when there is no room beside the page, drag the page to the left.
 - 💡 **Screen stays on** while you read.
 - 🖥 **Immersive mode**: system bars are hidden (optional).
 - 🎨 **Themes**: "Library" (default), a sci-fi HUD dashboard theme, light, dark and system.

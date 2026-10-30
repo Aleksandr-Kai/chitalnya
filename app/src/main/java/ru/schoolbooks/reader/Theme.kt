@@ -45,8 +45,9 @@ private val SciFiColors = darkColorScheme(
     error = Color(0xFFFF6B8A),
 )
 
-enum class AppTheme(val label: String) {
-    LIBRARY("Библиотека"), SCIFI("Фантастика"), LIGHT("Светлая"), DARK("Тёмная"), SYSTEM("Как в системе");
+enum class AppTheme(@androidx.annotation.StringRes val label: Int) {
+    LIBRARY(R.string.theme_library), SCIFI(R.string.theme_scifi), LIGHT(R.string.theme_light),
+    DARK(R.string.theme_dark), SYSTEM(R.string.theme_system);
 
     fun isDark(systemDark: Boolean) = when (this) {
         SCIFI, LIBRARY, DARK -> true

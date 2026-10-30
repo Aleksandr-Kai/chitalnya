@@ -27,7 +27,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
@@ -50,6 +52,7 @@ fun ThumbStrip(
     height: Dp,
     onPick: (Int) -> Unit,
     modifier: Modifier = Modifier,
+    tint: Color? = null,
 ) {
     val density = LocalDensity.current
     val widthPx = with(density) { width.toPx() }
@@ -88,7 +91,10 @@ fun ThumbStrip(
                     ),
             ) {
                 bitmap?.let {
-                    Image(it.asImageBitmap(), null, Modifier.fillMaxWidth(), contentScale = ContentScale.FillWidth)
+                    Image(
+                        it.asImageBitmap(), null, Modifier.fillMaxWidth(), contentScale = ContentScale.FillWidth,
+                        colorFilter = tint?.let { c -> ColorFilter.tint(c, BlendMode.Modulate) },
+                    )
                 }
                 Text(
                     "${i + 1}", fontSize = 11.sp, color = Color.White,
