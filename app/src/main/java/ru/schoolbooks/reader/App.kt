@@ -172,6 +172,12 @@ fun App(model: AppViewModel) {
                             SciTextButton(onClick = { showSettings = true }) {
                                 Text("Настройки", fontSize = 16.sp)
                             }
+                            val activity = LocalContext.current as? android.app.Activity
+                            Button(
+                                onClick = { activity?.finish() },
+                                modifier = Modifier.padding(start = 8.dp, end = 12.dp),
+                                shape = if (LocalSciFi.current) androidx.compose.ui.graphics.RectangleShape else RoundedCornerShape(20.dp),
+                            ) { Text("Закрыть", fontSize = 16.sp, fontWeight = FontWeight.Bold) }
                         },
                     )
                 },
