@@ -39,18 +39,23 @@
 
 ## Install
 
-There is no store release yet; build from source.
+The app is not on Google Play; it installs from an APK file.
 
-1. Install Android Studio, or JDK 17 and the Android SDK.
-2. Connect your tablet over USB with USB debugging enabled.
-3. Run:
+1. [Download Chitalnya.apk](https://github.com/Aleksandr-Kai/chitalnya/releases/latest/download/Chitalnya.apk) to your tablet.
+2. Open the file and, if Android asks, allow installs from this source.
+3. If Play Protect warns you, choose "Install anyway".
+
+Requires Android 8.0 (API 26) or newer.
+
+<details>
+<summary>Build from source (for developers)</summary>
 
 ```bash
 ./gradlew assembleDebug
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Requires Android 8.0 (API 26) or newer.
+</details>
 
 ## Usage
 

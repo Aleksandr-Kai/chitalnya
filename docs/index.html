@@ -28,7 +28,7 @@
 <meta name="twitter:description" content="Читалка школьных учебников PDF для Android-планшета. A cosy PDF textbook reader for tablets.">
 <meta name="twitter:image" content="https://aleksandr-kai.github.io/chitalnya/shots/scifi-books.jpg">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Читальня","alternateName":"Chitalnya","applicationCategory":"EducationalApplication","operatingSystem":"Android 8.0+","description":"Бесплатная читалка школьных учебников в PDF для Android-планшета. A free PDF textbook reader for Android tablets.","inLanguage":["ru","en"],"image":"https://aleksandr-kai.github.io/chitalnya/shots/scifi-books.jpg","url":"https://aleksandr-kai.github.io/chitalnya/","license":"https://polyformproject.org/licenses/noncommercial/1.0.0","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Читальня","alternateName":"Chitalnya","applicationCategory":"EducationalApplication","operatingSystem":"Android 8.0+","description":"Бесплатная читалка школьных учебников в PDF для Android-планшета. A free PDF textbook reader for Android tablets.","inLanguage":["ru","en"],"image":"https://aleksandr-kai.github.io/chitalnya/shots/scifi-books.jpg","url":"https://aleksandr-kai.github.io/chitalnya/","downloadUrl":"https://github.com/Aleksandr-Kai/chitalnya/releases/latest/download/Chitalnya.apk","license":"https://polyformproject.org/licenses/noncommercial/1.0.0","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -66,7 +66,7 @@ section{padding:40px 0}
 .mock.li{background:#f2f2f2}.mock.li .book{background:#fff;border:1px solid #bbb}
 .mock.da{background:#141414}.mock.da .book{background:#262626;border:1px solid #444}
 .cap{text-align:center;margin-top:8px;color:var(--muted);font-size:.95rem}
-ol.steps{max-width:640px;margin:0 auto;padding-left:24px}
+ol.steps{max-width:640px;margin:16px auto;padding-left:24px}ol.steps li{margin-bottom:8px}code{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-size:.9em}
 pre{background:#1f1913;color:#f3e8d6;padding:16px;border-radius:10px;overflow-x:auto;font-size:.9rem}
 .lic{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:20px;text-align:center}
 footer{text-align:center;color:var(--muted);padding:32px 0 48px;font-size:.9rem}
@@ -89,7 +89,7 @@ html[lang=ru] [data-l=ru],html[lang=en] [data-l=en]{display:revert}
   <h1><span data-l="ru">Читальня</span><span data-l="en">Chitalnya</span></h1>
   <p data-l="ru">Уютная читалка школьных учебников в PDF для Android-планшета. Ваши папки остаются папками, закладки получают подписи, экран не гаснет.</p>
   <p data-l="en">A cosy reader for school textbooks in PDF on Android tablets. Your folders stay folders, bookmarks get labels, the screen stays on.</p>
-  <a class="btn" href="https://github.com/Aleksandr-Kai/chitalnya"><span data-l="ru">Исходники на GitHub</span><span data-l="en">Source on GitHub</span></a>
+  <a class="btn" href="https://github.com/Aleksandr-Kai/chitalnya/releases/latest/download/Chitalnya.apk"><span data-l="ru">Скачать APK</span><span data-l="en">Download APK</span></a>
   <a class="btn alt" href="#install"><span data-l="ru">Как установить</span><span data-l="en">How to install</span></a>
 </header>
 
@@ -143,18 +143,22 @@ html[lang=ru] [data-l=ru],html[lang=en] [data-l=en]{display:revert}
 </section>
 
 <section id="install">
-  <h2><span data-l="ru">Установка</span><span data-l="en">Install</span></h2>
+  <h2><span data-l="ru">Скачать и установить</span><span data-l="en">Download and install</span></h2>
+  <p class="cap" style="margin:0 0 16px"><a class="btn" href="https://github.com/Aleksandr-Kai/chitalnya/releases/latest/download/Chitalnya.apk"><span data-l="ru">Скачать Читальню (APK, 9 МБ)</span><span data-l="en">Download Chitalnya (APK, 9 MB)</span></a></p>
+  <p class="cap"><span data-l="ru">Читальни нет в Google Play, поэтому она ставится из файла. Это безопасно и занимает минуту.</span><span data-l="en">Chitalnya is not on Google Play, so it installs from a file. It is safe and takes a minute.</span></p>
   <ol class="steps">
-    <li data-l="ru">Установите Android Studio (или JDK 17 и Android SDK).</li>
-    <li data-l="en">Install Android Studio (or JDK 17 and the Android SDK).</li>
-    <li data-l="ru">Подключите планшет по USB с включённой отладкой.</li>
-    <li data-l="en">Connect the tablet over USB with debugging enabled.</li>
-    <li data-l="ru">Соберите и установите:</li>
-    <li data-l="en">Build and install:</li>
+    <li data-l="ru"><b>Скачайте файл</b> <code>Chitalnya.apk</code> кнопкой выше прямо на планшете.</li>
+    <li data-l="en"><b>Download</b> <code>Chitalnya.apk</code> with the button above, right on the tablet.</li>
+    <li data-l="ru"><b>Откройте его</b>: нажмите на уведомление о загрузке или найдите файл в папке «Загрузки».</li>
+    <li data-l="en"><b>Open it</b>: tap the download notification or find the file in the Downloads folder.</li>
+    <li data-l="ru"><b>Разрешите установку.</b> Если Android спросит, включите «Разрешить установку из этого источника» для браузера или «Файлов», затем вернитесь назад.</li>
+    <li data-l="en"><b>Allow the install.</b> If Android asks, turn on “Allow from this source” for your browser or Files app, then go back.</li>
+    <li data-l="ru"><b>Нажмите «Установить».</b> Если Play Защита предупредит о неизвестном приложении, выберите «Всё равно установить».</li>
+    <li data-l="en"><b>Tap “Install”.</b> If Play Protect warns about an unknown app, choose “Install anyway”.</li>
+    <li data-l="ru"><b>Откройте Читальню</b>, зайдите в «Настройки» и выберите папку с учебниками.</li>
+    <li data-l="en"><b>Open Chitalnya</b>, go to Settings and pick your textbooks folder.</li>
   </ol>
-  <pre>./gradlew assembleDebug
-adb install -r app/build/outputs/apk/debug/app-debug.apk</pre>
-  <p class="cap"><span data-l="ru">Android 8.0 (API 26) и новее. Приложение только читает файлы и не использует интернет.</span><span data-l="en">Android 8.0 (API 26) or newer. The app only reads files and does not use the internet.</span></p>
+  <p class="cap"><span data-l="ru">Нужен Android 8.0 или новее. Приложение только читает ваши файлы и не использует интернет. Обновление ставится поверх старой версии: закладки и страницы сохраняются.</span><span data-l="en">Requires Android 8.0 or newer. The app only reads your files and does not use the internet. Updates install over the old version and keep your bookmarks and pages.</span></p>
 </section>
 
 <section>
@@ -165,7 +169,7 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk</pre>
   </div>
 </section>
 
-<footer>© Читальня / Chitalnya · PolyForm Noncommercial 1.0.0</footer>
+<footer>© Читальня / Chitalnya · PolyForm Noncommercial 1.0.0 · <a href="https://github.com/Aleksandr-Kai/chitalnya">GitHub</a></footer>
 </div>
 <script>
 (function(){

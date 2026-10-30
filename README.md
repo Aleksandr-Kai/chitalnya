@@ -39,18 +39,23 @@
 
 ## Установка
 
-Готового релиза в магазинах нет: приложение собирается из исходников.
+Приложения нет в Google Play, оно ставится из APK-файла.
 
-1. Установите Android Studio или JDK 17 и Android SDK.
-2. Подключите планшет по USB (включите отладку по USB).
-3. Выполните:
+1. [Скачайте Chitalnya.apk](https://github.com/Aleksandr-Kai/chitalnya/releases/latest/download/Chitalnya.apk) на планшет.
+2. Откройте файл и, если Android спросит, разрешите установку из этого источника.
+3. Если Play Защита предупредит, выберите «Всё равно установить».
+
+Требуется Android 8.0 (API 26) и новее.
+
+<details>
+<summary>Сборка из исходников (для разработчиков)</summary>
 
 ```bash
 ./gradlew assembleDebug
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Требуется Android 8.0 (API 26) и новее.
+</details>
 
 ## Как пользоваться
 
