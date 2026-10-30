@@ -146,6 +146,7 @@ html[lang=ru] [data-l=ru],html[lang=en] [data-l=en]{display:revert}
   <h2><span data-l="ru">Скачать и установить</span><span data-l="en">Download and install</span></h2>
   <p class="cap" style="margin:0 0 16px"><a class="btn" href="https://github.com/Aleksandr-Kai/chitalnya/releases/latest/download/Chitalnya.apk"><span data-l="ru">Скачать Читальню (APK, 9 МБ)</span><span data-l="en">Download Chitalnya (APK, 9 MB)</span></a></p>
   <p class="cap"><span data-l="ru">Читальни нет в Google Play, поэтому она ставится из файла. Это безопасно и занимает минуту.</span><span data-l="en">Chitalnya is not on Google Play, so it installs from a file. It is safe and takes a minute.</span></p>
+  <p class="cap" id="verline" hidden><b><span data-l="ru">Актуальная версия: </span><span data-l="en">Latest version: </span><span id="ver"></span></b></p>
   <ol class="steps">
     <li data-l="ru"><b>Скачайте файл</b> <code>Chitalnya.apk</code> кнопкой выше прямо на планшете.</li>
     <li data-l="en"><b>Download</b> <code>Chitalnya.apk</code> with the button above, right on the tablet.</li>
@@ -194,6 +195,18 @@ html[lang=ru] [data-l=ru],html[lang=en] [data-l=en]{display:revert}
   document.getElementById('bru').onclick=function(){set('ru')};
   document.getElementById('ben').onclick=function(){set('en')};
   set(l==='en'?'en':'ru');
+})();
+
+// The latest release number comes from GitHub, so it never needs editing by hand; the line stays hidden if the request fails.
+(function(){
+  fetch('https://api.github.com/repos/Aleksandr-Kai/chitalnya/releases/latest',{headers:{Accept:'application/vnd.github+json'}})
+    .then(function(r){return r.ok?r.json():Promise.reject()})
+    .then(function(d){
+      var v=String(d.tag_name||'').replace(/^v/i,'');
+      if(!v)return;
+      document.getElementById('ver').textContent=v;
+      document.getElementById('verline').hidden=false;
+    }).catch(function(){});
 })();
 </script>
 </body>
